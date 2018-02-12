@@ -1,16 +1,33 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Mi primer APP</title>
+        <title>Login - Obligatorio</title>
+         <link rel="stylesheet" href="resources/css/bootstrap.css">
+         <link rel="stylesheet" href="resources/css/login.css">
+         <script src="resources/css/bootstrap.js"></script>
     </head>
     <body>
-        <form method="post" action="procesoLogin.php">
-            Usuario: <input type="text" id="txtUsuario" name="txtUsuario" value="{$usuario}"/>
-            <br/>
-            Clave: <input type="password" id="txtClave" name="txtClave"/>
-            <br/>
-            <input type="submit" value="Ingresar al Sistema"/>
-        </form>
-        <div>{$mensaje}</div>
+                    <form class="form-signin" method="post" action="pages/login.php">
+                        <div class="text-center mb-4">
+                            <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                            <h1 class="h3 mb-3 font-weight-normal">Obligatorio</h1>
+                            <p>Taller de programación</p>
+                          </div>
+                        <div class="form-label-group">
+                         
+                            <input class="form-control" placeholder="Usuario" type="text" id="txtUsuario" name="txtUsuario" value="{$usuario}" required autofocus/>
+                             <label for="usuario">Usuario</label> 
+                        </div>
+                         <div class="form-label-group">
+             
+                             <input class="form-control" placeholder="Contraseña" type="password" id="txtClave" name="txtClave" required/>
+                             <label for="pass">Contraseña</label> 
+                       </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        <div>{$mensaje}</div>
+                        <p class="mt-5 mb-3 text-muted text-center">Universidad ORT - Uruguay</p>
+                    </form>
+                    
+             
     </body>
 </html>

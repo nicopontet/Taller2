@@ -14,7 +14,6 @@
                             <p>Taller de programación</p>
                           </div>
                         <div class="form-label-group">
-                         
                             <input class="form-control" placeholder="Usuario" type="text" id="txtUsuario" name="txtUsuario" value="{$usuario}" required autofocus/>
                              <label for="usuario">Usuario</label> 
                         </div>

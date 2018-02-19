@@ -4,7 +4,7 @@
         <title>Login - Obligatorio</title>
          <link rel="stylesheet" href="resources/css/bootstrap.css">
          <link rel="stylesheet" href="resources/css/login.css">
-         <script src="resources/css/bootstrap.js"></script>
+    
     </head>
     <body>
                     <form class="form-signin" method="post" action="pages/login.php">
@@ -14,12 +14,12 @@
                             <p>Taller de programación</p>
                           </div>
                         <div class="form-label-group">
-                            <input class="form-control" placeholder="Usuario" type="text" id="txtUsuario" name="txtUsuario" value="{$usuario}" required autofocus/>
-                             <label for="usuario">Usuario</label> 
+                            <input class="form-control" type="text" id="txtUsuario" name="txtUsuario" value="{$usuario}" required autofocus/>
+                            <label for="usuario">Usuario</label> 
                         </div>
                          <div class="form-label-group">
              
-                             <input class="form-control" placeholder="Contraseña" type="password" id="txtClave" name="txtClave" required/>
+                             <input class="form-control" type="password" id="txtClave" name="txtClave" required/>
                              <label for="pass">Contraseña</label> 
                        </div>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
@@ -27,6 +27,6 @@
                         <p class="mt-5 mb-3 text-muted text-center">Universidad ORT - Uruguay</p>
                     </form>
                     
-             
+        
     </body>
 </html>

@@ -14,6 +14,6 @@ $smarty->compile_dir = "templates_c";
 $smarty->assign("usuario",$_COOKIE['txtUsu']);
 $smarty->assign("mensaje",$mensaje);
 
-$smarty->display("inicioPublico.tpl");
+$smarty->display("login.tpl");
 
 ?>

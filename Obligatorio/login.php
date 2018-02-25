@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("../includes/class.Conexion.BD.php");
-require_once("../config/configuracion.php");
+require_once("includes/class.Conexion.BD.php");
+require_once("config/configuracion.php");
 
 
 $conn = new ConexionBD(MOTOR, SERVIDOR, BASEDATOS, USUARIOBASE, CLAVEBASE);
@@ -20,13 +20,14 @@ if ($conn->conectar()) {
         if(md5($clave) == $fila['usuClave']){
         $_SESSION['ingreso'] = true;
         $_SESSION['usuario'] = $usuario;
+        $_SESSION['nombreCompleto']=$fila['usuNom'] . " " . $fila['usuApe'];
         setcookie("txtUsu",$usuario,time()+(60*60*24));
-        header("Location: ../inicioPrivado.php");
+        header("Location: inicioPrivado.php");
         }
         else{
             $_SESSION['ingreso'] = false; 
             $_SESSION['mensaje'] = "Usuario o clave erronea!";
-            header("Location: ../index.php");
+            header("Location: index.php");
         }
     }
     else {

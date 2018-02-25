@@ -16,9 +16,8 @@ else{
     
     //TODO
     $smarty->assign("usuario",$_SESSION['usuario']);
-    $smarty->assign("nombreCompleto",$_SESSION['nombreCompleto']);
     
-    $smarty->display("privado/inicioPrivado.tpl");
+    $smarty->display("registroDeUsuario.tpl");
             
 }
 

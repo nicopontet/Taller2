@@ -7,17 +7,16 @@
        
     </head>
     <body>
-        {include file="common/cabezal.tpl"}
-        <div class="container-fluid">
-           <div class="row">
-                {include file="common/menu.tpl"}
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                    {block name=cuerpo}{/block}
-                </main>
-                
+        {include file="common/publico/cabezal.tpl"}
+       <div class="container">
+		<div class="row mt-3">
+                    <div class="col"> 
+                        {block name=cuerpo}{/block} 
+                </div>
             </div>
         </div>
         {include file="common/pie.tpl"} 
+        
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/jquery.js"></script>
     </body>

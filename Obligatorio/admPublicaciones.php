@@ -4,6 +4,7 @@ session_start();
 
 require_once("includes/libs/Smarty.class.php");
 
+
 if(!$_SESSION['ingreso']){
     $_SESSION['mensaje'] = "Debe registrarse para acceder al área privada";
     header("Location: index.php");
@@ -17,9 +18,9 @@ else{
     //TODO
     $smarty->assign("usuario",$_SESSION['usuario']);
     $smarty->assign("nombreCompleto",$_SESSION['nombreCompleto']);
+    $smarty->assign("ingreso",$_SESSION['ingreso']);
     
-    $smarty->display("privado/inicioPrivado.tpl");
+    $smarty->display("admPublicaciones.tpl");
             
 }
-
 ?>

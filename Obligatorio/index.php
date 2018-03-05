@@ -3,6 +3,7 @@ session_start();
 
 require_once("includes/libs/Smarty.class.php");
 
+$_SESSION['mensaje']="";
 $mensaje = $_SESSION['mensaje'];
 
 $smarty = new Smarty();
@@ -13,7 +14,8 @@ $smarty->compile_dir = "templates_c";
 //TODO
 $smarty->assign("usuario",$_COOKIE['txtUsu']);
 $smarty->assign("mensaje",$mensaje);
+$smarty->assign("ingreso",false);
 
-$smarty->display("inicioPublico.tpl");
+$smarty->display("publicaciones.tpl");
 
 ?>

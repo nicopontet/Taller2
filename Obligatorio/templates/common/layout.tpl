@@ -7,10 +7,10 @@
        
     </head>
     <body>
-        {include file="common/publico/cabezal.tpl"}
+        {include file="common/cabezal.tpl"}
        <div class="container">
-		<div class="row mt-3">
-                    <div class="col"> 
+		<div class="row row align-items-center">
+                    <div class="col">
                         {block name=cuerpo}{/block} 
                 </div>
             </div>

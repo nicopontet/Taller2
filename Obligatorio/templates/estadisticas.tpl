@@ -1,4 +1,4 @@
-{extends file='common/privado/layout.tpl'}
+{extends file='common/layout.tpl'}
 {block name=cuerpo}
 Estadisticas
 {/block}

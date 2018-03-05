@@ -14,7 +14,7 @@
                             <p>Taller de programación</p>
                           </div>
                         <div class="form-label-group">
-                            <input class="form-control" type="text" id="txtUsuario" name="txtUsuario" value="{$usuario}" required autofocus/>
+                            <input class="form-control" type="text" id="txtUsuario" name="txtEmail" value="{$usuario}" required autofocus/>
                             <label for="usuario">Usuario</label> 
                         </div>
                          <div class="form-label-group">
@@ -22,11 +22,15 @@
                              <input class="form-control" type="password" id="txtClave" name="txtClave" required/>
                              <label for="pass">Contraseña</label> 
                        </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                        <div>{$mensaje}</div>
+                        <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                        <div class="form-labe-group">
+                            {if $mensaje neq ""}
+                                <div class="alert alert-danger mt-3">{$mensaje}</div>
+                             {/if}
+                        </div>
+                       
                         <p class="mt-5 mb-3 text-muted text-center">Universidad ORT - Uruguay</p>
                     </form>
-                    
         
     </body>
 </html>

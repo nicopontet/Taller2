@@ -16,6 +16,8 @@ else{
     
     //TODO
     $smarty->assign("usuario",$_SESSION['usuario']);
+    $smarty->assign("nombreCompleto",$_SESSION['nombreCompleto']);
+    $smarty->assign("ingreso",$_SESSION['ingreso']);
     
     $smarty->display("publicaciones.tpl");
             

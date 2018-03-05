@@ -6,10 +6,10 @@ require_once("config/configuracion.php");
 
 $conn = new ConexionBD(MOTOR, SERVIDOR, BASEDATOS, USUARIOBASE, CLAVEBASE);
 
-$usuario = $_POST['txtUsuario'];
+$usuario = $_POST['txtEmail'];
 $clave = $_POST['txtClave'];
 if ($conn->conectar()) {
-    $sql = "SELECT * FROM Usuarios WHERE usuUsuario = :usu";
+    $sql = "SELECT * FROM Usuarios WHERE usuEmail = :usu";
     //cargo los parametros para la sql
     $parametros = array();
     $parametros[0] = array("usu",$usuario,"string");
@@ -22,12 +22,13 @@ if ($conn->conectar()) {
         $_SESSION['usuario'] = $usuario;
         $_SESSION['nombreCompleto']=$fila['usuNom'] . " " . $fila['usuApe'];
         setcookie("txtUsu",$usuario,time()+(60*60*24));
-        header("Location: inicioPrivado.php");
+        header("Location: publicaciones.php");
         }
         else{
+            //TODO
             $_SESSION['ingreso'] = false; 
             $_SESSION['mensaje'] = "Usuario o clave erronea!";
-            header("Location: index.php");
+            header("Location: iniciarSesion.php");
         }
     }
     else {

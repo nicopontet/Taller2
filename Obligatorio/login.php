@@ -9,7 +9,7 @@ $conn = new ConexionBD(MOTOR, SERVIDOR, BASEDATOS, USUARIOBASE, CLAVEBASE);
 $usuario = $_POST['txtEmail'];
 $clave = $_POST['txtClave'];
 if ($conn->conectar()) {
-    $sql = "SELECT * FROM Usuarios WHERE usuEmail = :usu";
+    $sql = "SELECT * FROM usuarios WHERE email = :usu";
     //cargo los parametros para la sql
     $parametros = array();
     $parametros[0] = array("usu",$usuario,"string");
@@ -17,10 +17,10 @@ if ($conn->conectar()) {
     if($conn->consulta($sql,$parametros)){
         
         $fila=$conn->siguienteRegistro();
-        if(md5($clave) == $fila['usuClave']){
+        if(md5($clave) == $fila['password']){
         $_SESSION['ingreso'] = true;
         $_SESSION['usuario'] = $usuario;
-        $_SESSION['nombreCompleto']=$fila['usuNom'] . " " . $fila['usuApe'];
+        $_SESSION['nombreCompleto']=$fila['nombre'];
         setcookie("txtUsu",$usuario,time()+(60*60*24));
         header("Location: publicaciones.php");
         }

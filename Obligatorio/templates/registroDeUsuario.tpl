@@ -13,11 +13,6 @@
                                 <label for="txtNombre">Nombre</label>
                                 <input type="text" class="form-control" placeholder="Nombre" name="txtNombre" id="txtNombre">
                             </div>
-
-                            <div class="form-group">
-                                <label for="txtApellido">Apellido</label>
-                                <input type="text" class="form-control" placeholder="Nombre" name="txtApellido" id="txtApellido">
-                            </div>
                             <div class="form-group">
                                 <label for="txtEmail">Email</label>
                                 <input type="email" class="form-control" placeholder="Email" name="txtEmail" id="txtEmail">

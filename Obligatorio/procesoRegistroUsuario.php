@@ -11,11 +11,10 @@ require_once("config/configuracion.php");
     $email = $_POST['txtEmail'];
     $clave = $_POST['txtClave'];
     $nombre = $_POST['txtNombre'];
-    $apellido = $_POST['txtApellido'];
     
     if($conn->conectar()){
 
-        $sql = "SELECT * FROM Usuarios where usuEmail=:email";
+        $sql = "SELECT * FROM usuarios where email=:email";
 
         $parametros = array();
         $parametros[0] = array("email",trim($email),"string");
@@ -23,20 +22,19 @@ require_once("config/configuracion.php");
 
             $resultado = $conn->cantidadRegistros();
             if ($resultado==0) {
-                $sql = "INSERT INTO Usuarios (usuClave, usuEmail,usuNom,usuApe)";
-                $sql .= " VALUES (:cla, :corr, :nombre, :apellido)";
+                $sql = "INSERT INTO usuarios (email,nombre,password)";
+                $sql .= " VALUES (:email, :nombre,:pass)";
 
                 //cargo los parametros para la sql
                 $parametros = array();
-                $parametros[0] = array("cla",md5($clave),"string");
-                $parametros[1] = array("corr",$email,"string");
+                $parametros[0] = array("pass",md5($clave),"string");
+                $parametros[1] = array("email",$email,"string");
                 $parametros[2] = array("nombre",$nombre,"string");
-                $parametros[3] = array("apellido",$apellido,"string");
                 //ejecuto la consulta
                 if($conn->consulta($sql,$parametros)){
                     $_SESSION['ingreso'] = true;
                     $_SESSION['usuario'] = $email;
-                    $_SESSION['nombreCompleto']=$nombre. " " . $apellido;
+                    $_SESSION['nombreCompleto']=$nombre;
                     setcookie("txtUsu",$email,time()+(60*60*24));
                     header("Location: publicaciones.php");
                 }

@@ -25,16 +25,17 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="publicaciones.php" class="nav-link">Inicio <span class="sr-only">(Actual)</span></a>
+                    <a href="publicaciones.php" class="nav-link">Publicaciones <span class="sr-only">(Actual)</span></a>
                 </li>
                  {if $ingreso}
                  <li class="nav-item">
-                    <a href="admPublicaciones.php" class="nav-link">Administrar publicaciones</a>
+                    <a href="registrarPublicacion.php" class="nav-link">Registrar publicación</a>
                 </li>
-                {/if}
+                
                 <li class="nav-item">
                     <a href="estadisticas.php" class="nav-link">Estadísticas</a>
                 </li>
+                {/if}
             </ul>
             <div class="d-inline-flex align-content-center">
                 {if $ingreso}

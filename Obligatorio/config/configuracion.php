@@ -2,7 +2,7 @@
 
 define("MOTOR","mysql");
 define("SERVIDOR","localhost");
-define("BASEDATOS","obligatorio");
+define("BASEDATOS","mascotas");
 define("USUARIOBASE","root");
 define("CLAVEBASE","root");
 

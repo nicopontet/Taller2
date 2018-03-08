@@ -4,7 +4,7 @@
         <title>Obligatorio</title>
          <link rel="stylesheet" href="resources/css/bootstrap.css">
          <link rel="stylesheet" href="resources/css/layout.css">
-       
+           
     </head>
     <body>
         {include file="common/cabezal.tpl"}
@@ -19,5 +19,6 @@
         
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/jquery.js"></script>
+        <script src="resources/js/registrarPublicacion.js"></script>
     </body>
 </html>

@@ -1,37 +1,30 @@
 $(document).ready(inicializo);
 
 function inicializo(){
-    $("#especieId").change(cargarRazas);
-    cargarRazas();
+    $("#imgPublicacion").hide();
 }
-
-function cargarRazas(){
-    var especieId = $("#especieId").val();
-    
-    $.ajax({
-        url: "obtenerRazas.php",
-        type: "POST",
-        dataType: "json",
-        data: "especieId=" + especieId,
-        success: obtenerRazas,
-        error: procesoError,
-        timeout: 4000,
-    });
-}
-
-function obtenerRazas(datos){
-    if(datos['estado']=="OK"){
-        razas = datos['data'];
-        $("#razaId").empty();
-        for(pos=0; pos<=razas.length-1; pos++){
-            raza = razas[pos];
-            $("#razaId").append("<option value='" + raza['id'] + "'>" + raza['nombre'] + "</option>")
-        }      
-    }
-    else{
-        alert(datos['mensaje']);
-    }
-}
-function procesoError(){
-    alert("Algo no funcionó correctamente!");
-}
+  function archivo(evt) {
+                  
+                  var files = evt.target.files; // FileList object
+             
+                    for (var i = 0, f; f = files[i]; i++) {
+                    //Solo admitimos imágenes.
+                    if (!f.type.match('image.*')) {
+                        continue;
+                    }
+                    //Solo admitimos imágenes.
+                    var reader = new FileReader();
+             
+                    reader.onload = (function(theFile) {
+                        return function(e) {
+                          // Insertamos la imagen
+                         $("#imgPublicacion").attr("src", e.target.result,"title", escape(theFile.name));
+                        };
+                    })(f);
+             
+                    reader.readAsDataURL(f);
+                    $("#imgPublicacion").show();
+                    }     
+              }
+             
+ document.getElementById('archivoPublicacion').addEventListener('change', archivo, false);

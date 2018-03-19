@@ -20,6 +20,7 @@ if ($conn->conectar()) {
         if(md5($clave) == $fila['password']){
         $_SESSION['ingreso'] = true;
         $_SESSION['usuario'] = $usuario;
+        $_SESSION['usuario_id']=$fila['id'];
         $_SESSION['nombreCompleto']=$fila['nombre'];
         setcookie("txtUsu",$usuario,time()+(60*60*24));
         header("Location: publicaciones.php");

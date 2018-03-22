@@ -1,8 +1,8 @@
 {extends file='common/layout.tpl'}
 {block name=cuerpo}
     <div class="row">
-        <div class="col col-md-3"></div>
-        <div class="col col-md-6 ">
+      
+        <div class="col col-md-12 ">
             <div class="card mt-5">
                 <div class="card-header">
                     <h4>Registrar publicación</h4>
@@ -51,15 +51,22 @@
                         </div>
                         <div class="form-group">    
                             <div class="custom-file">
-                                <input type="file" class="form-control-file" id="archivoPublicacion" name="archivoPublicacion">
+                                <input type="file" class="form-control-file" id="archivoPublicacion[]" name="archivoPublicacion[]" multiple="">
                             </div>
                         </div>
-                        <div class="form-group">    
-                            <div class="row no-gutters">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="card">
+                                      <div id="imagenes" name="imagenes">  </div> 
+                                </div>
+                            </div>
+                        </div>
+                           <!-- <div class="row no-gutters">
                                 <div class="col-4 columna">
                                     <img id="imgPublicacion" name="imgPublicacion" class="imgPublicacion img-fluid float-left img-thumbnail"/>
                                 </div>
-                            </div>
+                            </div>-->
+                           <div class="form-group">  
                             <div class="form-labe-group">
                                 {if $mensaje neq ""}
                                     <div class="alert alert-danger mt-3">{$mensaje}</div>
@@ -77,6 +84,10 @@
         </div>
     </div> 
     </div>
+{/block}
+{block name=js}
+   <script src="resources/js/registrarPublicacion.js"></script>
+    
 {/block}
 
 

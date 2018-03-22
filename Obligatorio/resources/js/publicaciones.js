@@ -85,9 +85,7 @@ function obtenerPublicaciones(pagina){
         url: "obtenerPublicaciones.php",
         type: "POST",
         dataType: "json",
-       // data: "pagina=" + pagina+"&tipo="+$("#tipoId").val()+"&palabra="+$("#buscarPalabra").val()+
-         //           "&especie="+$("#especieId").val()+"&raza="+$("#razaId").val()+"&barrio="+$("#barrioId").val(),
-        data: {'pagina': pagina, 'tipo': tipo, 'palabra': palabra, 'especie': especie, 'barrio': barrio,'raza': raza},
+        data: {'misPublicaciones':false,'pagina': pagina, 'tipo': tipo, 'palabra': palabra, 'especie': especie, 'barrio': barrio,'raza': raza,'abierto':'1'},
         success: cargoFilas
     });    
 }
@@ -109,13 +107,10 @@ function cargoFilas(datos){
             
             totalFilas++;
             fila += "<div class='col-4'> <div class='card'>";
-            foto = publicacion['foto'];
-            if(publicacion['foto'] == ""){
-                foto = "imagenes/vacio.png";
-            }
+            foto = "fotos/"+publicacion['id']+"/"+publicacion['foto'];
             fila += "<img src='" + foto + "' class='card-img-top img-fluid'/>";
             fila += "<div class='card-body'>"
-            fila += "<h3 class='card-title'>" + publicacion['titulo'] + "</h3>";
+            fila += "<h3 class='card-title'><a target='_blank' href='fichaPublicacion.php?id="+publicacion['id']+"'>" + publicacion['titulo'] + "</a></h3>";
             fila += "<p class='card-text'>" + publicacion['descripcion'] + "</p>";
             if (publicacion['tipo']=='E') {
                 tipo="Encontrado";
@@ -130,8 +125,7 @@ function cargoFilas(datos){
              if(totalFilas == 5){
                fila += "</div>"; 
             }; 
-            
-            
+                
            
             lineas++;
         }

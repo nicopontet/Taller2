@@ -19,13 +19,10 @@
        
        {include file="common/pie.tpl"} 
         
-       
-        <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/jquery.js"></script>
+        <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/common.js"></script> 
-        <script src="resources/js/registrarPublicacion.js"></script> 
-      
-        
+ 
         
     </body>
     {block name=js}{/block}

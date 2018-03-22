@@ -7,5 +7,5 @@ define("USUARIOBASE","root");
 define("CLAVEBASE","root");
 
 //Paginación
-define("CANTXPAG",3);
+define("CANTXPAG",10);
 ?>

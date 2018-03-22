@@ -36,7 +36,7 @@ $respuesta = array();
 
             if($conn->consulta($sql, $parametros)){
                 $listadoPublicaciones = $conn->restantesRegistros();                        
-
+                CargarFotosIniciales($listadoPublicaciones);
                 $respuesta['estado'] = "OK";
                 $respuesta['totPaginas'] =  $cantPags;
                 $respuesta['data'] = $listadoPublicaciones;
@@ -61,10 +61,7 @@ $respuesta = array();
 //para cuando respondo a la APP
 echo json_encode($respuesta);
 
-//para testing
-//echo "<pre>";
-//print_r($respuesta);
-//echo "</pre>";
+
 function armarConsulta(&$sql,&$parametros,$inicio) {
      
     $tipo = $_POST['tipo'];
@@ -72,57 +69,73 @@ function armarConsulta(&$sql,&$parametros,$inicio) {
     $especie = (int)$_POST['especie'];
     $raza = (int)$_POST['raza'];
     $barrio = (int)$_POST['barrio'];
+    $usuario = (int)$_POST['usuario'];
+    $misPublicaciones=(bool)$_POST['misPublicaciones'];
+    $abierto=(int)$_POST['abierto'];
     
-    $sqlSelect = "SELECT id,foto, titulo, descripcion, tipo";
-    $sqlFrom = " FROM publicaciones";
-    $sqlWhere="";
-    $sqlLimit=" LIMIT :ini, :cant";
+    $sqlSelect = "SELECT p.id, p.titulo, p.descripcion, p.tipo, p.abierto, 'foto' as foto";
+    $sqlFrom = " FROM publicaciones p";
+    $sqlWhere=" WHERE abierto=:abierto ";
+    $parametros[0] = array("abierto",$abierto,"int",0);
     
-    $parametros[0] = array("ini",$inicio,"int",0);
-    $parametros[1] = array("cant",CANTXPAG,"int",0);
-    $contParametros=2;
+    if (!$misPublicaciones) {
+         $sqlLimit=" LIMIT :ini, :cant";
+         $parametros[1] = array("ini",$inicio,"int",0);
+         $parametros[2] = array("cant",CANTXPAG,"int",0);
+         $contParametros=3;
+    }else{
+        $contParametros=1;
+        $sqlLimit="";
+    }
+   
     
     if ($especie!=0){
-        if ($sqlWhere == "" ) {
-             $sqlWhere .= " WHERE especie_id= :especie";
-        }
+        $sqlWhere .= " AND especie_id= :especie";
         $parametros[$contParametros] = array("especie",$especie,"int",0);
         $contParametros++;   
     }
     if ($raza!=0){
-        if ($sqlWhere == "" ) {
-             $sqlWhere .= " WHERE raza_id= :raza";
-        }else{ 
-            $sqlWhere .= " AND raza_id= :raza";        
-        }
+        $sqlWhere .= " AND raza_id= :raza";        
         $parametros[$contParametros] = array("raza",$raza,"int",0);
         $contParametros++;   
     }
     if ($barrio!=0){
-        if ($sqlWhere == "" ) {
-             $sqlWhere .= " WHERE barrio_id= :barrio";
-        }else{ 
-            $sqlWhere .= " AND barrio_id= :barrio";        
-        }
+        $sqlWhere .= " AND barrio_id= :barrio";        
         $parametros[$contParametros] = array("barrio",$barrio,"int",0);
         $contParametros++;   
     }
-    if ($tipo!="T"){
-        if ($sqlWhere == "" ) {
-             $sqlWhere .= " WHERE tipo= :tipo";
-        }else{ 
-            $sqlWhere .= " AND tipo= :tipo";        
-        }
+    if ($tipo!="T" && $tipo!=null){
+        $sqlWhere .= " AND tipo= :tipo";        
         $parametros[$contParametros] = array("tipo",$tipo);
         $contParametros++;   
     }
     if ($palabra!=""){
-        if ($sqlWhere == "" ) {
-             $sqlWhere .= " WHERE (titulo LIKE '%" .$palabra ."%' OR descripcion LIKE '%" .$palabra . "%') ";
-        }else{ 
-            $sqlWhere .= " AND (titulo LIKE '%" .$palabra ."%' OR descripcion LIKE '%" .$palabra . "%') ";      
-        }  
+        $sqlWhere .= " AND (titulo LIKE '%" .$palabra ."%' OR descripcion LIKE '%" .$palabra . "%') ";       
+    }
+      if ($usuario!=0){
+        $sqlWhere .= " AND usuario_id= :usuario";        
+        $parametros[$contParametros] = array("usuario",$usuario);
+        $contParametros++;   
     }
     $sql= $sqlSelect .$sqlFrom .$sqlWhere .$sqlLimit;
+}
+function CargarFotosIniciales(&$listadoPublicaciones){
+    
+    foreach ($listadoPublicaciones as $clave =>$value) {
+       $dir="fotos/". $value['id'];
+       if($directorio = opendir($dir)){
+       
+            while (!$encontro && (false !== ($archivo = readdir($directorio)))) {
+                if ($archivo != '.' && $archivo != '..') {
+                  
+                  $value['foto']=$archivo;
+                  $listadoPublicaciones[$clave] = $value;
+                  $encontro=true;
+                }
+           }
+           $encontro=false;
+           closedir($directorio); 
+       }
+    } 
 }
 ?>

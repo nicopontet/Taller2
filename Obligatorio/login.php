@@ -23,7 +23,12 @@ if ($conn->conectar()) {
         $_SESSION['usuario_id']=$fila['id'];
         $_SESSION['nombreCompleto']=$fila['nombre'];
         setcookie("txtUsu",$usuario,time()+(60*60*24));
-        header("Location: publicaciones.php");
+        if ($_SESSION['redirigirAFicha']!=-1) {
+            header("Location: fichaPublicacion.php?id=".$_SESSION['redirigirAFicha']);
+        }else{
+             header("Location: publicaciones.php");
+        }
+       
         }
         else{
             //TODO

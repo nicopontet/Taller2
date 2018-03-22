@@ -28,9 +28,17 @@
                     <a href="publicaciones.php" class="nav-link">Publicaciones <span class="sr-only">(Actual)</span></a>
                 </li>
                  {if $ingreso}
-                 <li class="nav-item">
-                    <a href="registrarPublicacion.php" class="nav-link">Registrar publicación</a>
-                </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Mis publicaciones
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="registrarPublicacion.php">Registrar publicacion</a>
+                      <a class="dropdown-item" href="cerrarPublicaciones.php">Cerrar publicaciones</a>
+                      <a class="dropdown-item" href="sinResponder.php">Responder preguntas sin constestar</a>
+                    </div>
+                  </li>
+
                 
                 <li class="nav-item">
                     <a href="estadisticas.php" class="nav-link">Estadísticas</a>

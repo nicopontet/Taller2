@@ -1,7 +1,7 @@
 $(document).ready(inicializo);
 
 function inicializo(){
-    $("#imgPublicacion").hide();
+   // $("#imgPublicacion").hide();
 }
   function archivo(evt) {
                   
@@ -9,22 +9,19 @@ function inicializo(){
              
                     for (var i = 0, f; f = files[i]; i++) {
                     //Solo admitimos imágenes.
-                    if (!f.type.match('image.*')) {
-                        continue;
-                    }
-                    //Solo admitimos imágenes.
-                    var reader = new FileReader();
-             
-                    reader.onload = (function(theFile) {
-                        return function(e) {
-                          // Insertamos la imagen
-                         $("#imgPublicacion").attr("src", e.target.result,"title", escape(theFile.name));
+                        if (!f.type.match('image.*')) {
+                            continue;
+                        }
+                         $("#imagenes").empty()
+                        //Solo admitimos imágenes.
+                        var reader = new FileReader();
+                          reader.onload = function(e) {
+                           
+                            fila="<img src='" + e.target.result + "' class='img-fotos card-img-top img-thumbnail'/>"
+                            $("#imagenes").append(fila);
                         };
-                    })(f);
-             
-                    reader.readAsDataURL(f);
-                    $("#imgPublicacion").show();
-                    }     
+                        reader.readAsDataURL(f);
+                    }    
               }
-             
- document.getElementById('archivoPublicacion').addEventListener('change', archivo, false);
+ //$("#archivoPublicacion[]").bind('change',archivo,false);          
+ document.getElementById('archivoPublicacion[]').addEventListener('change', archivo, false);

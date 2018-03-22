@@ -12,7 +12,7 @@
                             <div class="col-12 col-md-3 mb-3">
                                 <label for="tipo">Tipo</label>
                                 <select id="tipoId" name="tipoId" class="form-control">
-                                     <option value="T">Todos</option> 
+                                    <option value="T">Todos</option> 
                                     <option value="E">Encontrado</option> 
                                     <option value="P">Perdido</option> 
                                 </select>
@@ -51,8 +51,6 @@
                             </div>
                             <div class="col-12 col-md-3 mb-3 mt-4">
                                 <input class="btn btn-primary btn-block float-right" type="button" value="Filtrar" id="btnFiltrar"/>
-                                <!--<button id="btnFiltrar" class="btn btn-primary btn-block float-right" type="submit">Buscar</button>-->
-
                             </div>
                         </div>
                     </form>
@@ -73,9 +71,7 @@
                             <ul class="pagination">
                                 <li class="page-item"><a id="btnINI" class="page-link" href="#">Inicio</a></li>
                                 <li class="page-item"><a id="btnANT" class="page-link" href="#">Anterior</a></li>
-                                <li class="page-item"><a class="irPagina page-link" href="#">1</a></li>
                                 <li class="page-item active"><a id="pagActual" class="page-link" href="#"> <span id="pagActual"></span></a></li>
-                                <li class="page-item"><a class="irPagina page-link" href="#">3</a></li>
                                 <li class="page-item"><a id="btnSIG" class="page-link" href="#">Siguiente</a></li>
                                 <li class="page-item"><a id="btnFIN" class="page-link" href="#">Fin</a></li>
                             </ul>
@@ -99,7 +95,6 @@
 {block name=js}
    <script src="resources/js/publicaciones.js"></script>
     <script type="text/javascript">
-        var cantidadXpagina = 3;
-        
+          var cantidadXpagina = {$smarty.const.CANTXPAG};
     </script>
 {/block}
